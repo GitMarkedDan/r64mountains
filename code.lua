@@ -888,7 +888,7 @@ game:GetService("UserInputService").InputBegan:Connect(function()
     if not game.Players.LocalPlayer.PlayerGui.UI.pause.bg.pause:FindFirstChild("Clear") then
         createButton("Clear", UDim2.new(0.75,0,0,0),"Clear Extra ICs", clear, 0.75) 
     end
-    stuff.icrt[11] = "The Moutain Top"
+    stuff.icrt[11] = "The Mountain Top"
 end)
 
 sign = game:GetService("ReplicatedFirst").maps.hub["Sheldon Sign"]
