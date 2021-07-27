@@ -91,6 +91,41 @@ function createic(id,desc,pos,parent)
     return icemesh
 end
 
+function createButton(name,position,text,func)
+    Xpos = Xpos or 0.1
+    unloop = false
+    Button = Instance.new("TextButton")
+    Button.Font = Enum.Font.SourceSansBold
+    Button.TextColor3 = Color3.fromRGB(248,248,248)
+    Button.Name = name
+    Button.Position = position
+    Button.Size = game.Players.LocalPlayer.PlayerGui.UI.pause.bg.pause.snap.Size
+    Button.Text = text
+    Button.ZIndex = 6
+    Button.TextSize = 14
+    Button.BackgroundTransparency = 1
+    Button.Parent = game.Players.LocalPlayer.PlayerGui.UI.pause.bg.pause
+    Button.TextScaled = true
+
+    Outline = Instance.new("TextLabel")
+    Outline.Name = "outline"
+    Outline.Text = text
+    Outline.Position = UDim2.new(0,0,0,3)
+    Outline.TextScaled = true
+    Outline.Size = UDim2.new(1,0,1,0)
+    Outline.TextColor3 = Color3.new(0,0,0)
+    Outline.TextTransparency = 0.8
+    Outline.BackgroundTransparency = 1
+    Outline.TextSize = 14
+    Outline.Font = Button.Font
+    Outline.Parent = Button
+    Button.MouseEnter:Connect(function()
+    stuff.textsel = Button
+    end)
+    Button.MouseButton1Click:Connect(func)
+    return Button
+end
+
 if game:GetService("ReplicatedFirst").maps:FindFirstChild("Newtest") then
     game:GetService("ReplicatedFirst").maps.Newtest:ClearAllChildren()
     game:GetService("ReplicatedFirst").maps.Newtest:Destroy()
@@ -846,3 +881,18 @@ stuff.icr[11] = {
     c67 = "Leap of faith"
 }
 stuff.icrt[11] = "The Moutain Top"
+
+---------------------------------------------------------------------------------------------------------------------------------------
+function clear()
+    stuff.gd[5] = string.sub(stuff.gd[5],0,64)
+    game:GetService("Workspace").share.save:FireServer(stuff.gd)
+end
+createButton("Clear", UDim2.new(0.75,0,0,0),"Clear Extra ICs", clear, 0.75)
+
+sign = game:GetService("ReplicatedFirst").maps.hub["Sheldon Sign"]
+sign.tx.Value = "Hey, I added a thing in your pause menu."
+sign.tx.tx.Value = "You gotta press it and then quick to menu."
+sign.tx.tx.tx.Value = "I recommend heading into the pipe first to figure out what this is about, but I aint yo mama."
+sign.tx.tx.tx.tx.Value = "You misspelled quit"
+sign.tx.tx.tx.tx.tx.Value = "Shut up."
+sign.tx.tx.tx.tx.tx.tx.Value = "Ok rude"
