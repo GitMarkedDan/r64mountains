@@ -74,6 +74,7 @@ lowgrav.Name = "lowgrav"
 
 local bgm = Instance.new("IntValue")
 bgm.Name = "bgm"
+bgm.Value = 538397150
 bgm.Parent = settings_
 
 local lighting = Instance.new("Folder")
