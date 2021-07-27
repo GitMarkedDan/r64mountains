@@ -537,6 +537,7 @@ ice.Parent = Newtest
 
 local MainMesh = Iserv:CreateMeshPartAsync("rbxassetid://7158991702",3,2)
 MainMesh.Name = "MainMesh"
+MainMesh.Anchored = true
 MainMesh.Size = Vector3.new(302.20999145508, 404.08099365234, 369.77200317383)
 MainMesh.CFrame = CFrame.new(282.04699707031, 140.84098815918, -321.30599975586)
 MainMesh.PivotOffset = CFrame.new(7.5350332260132, 80.238265991211, -12.524220466614)
