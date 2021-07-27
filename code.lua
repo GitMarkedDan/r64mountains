@@ -1,5 +1,42 @@
---game:GetService("ReplicatedFirst").maps
 stuff = getsenv(game.Players.LocalPlayer.PlayerScripts.CharacterScript)
+local Iserv = game:GetService("InsertService")
+function createplatform(speed,parent,endin,pos,part)
+    if part then
+        platform1 = part
+    else
+        platform1 = Iserv:CreateMeshPartAsync("rbxassetid://1192468034",0,0)
+        platform1.TextureID = "rbxassetid://1192468093"
+        platform1.Size = Vector3.new(10, 0.9, 10)
+        platform1.Name = "platform"
+        platform1.Position = pos or Vector3.new(0,0,0)
+        platform1.Anchored = true
+    end
+    platform1.Parent = parent
+    
+    local start = Instance.new("Vector3Value",platform1)
+    start.Value = Vector3.new(0,0,0)
+    start.Name = "start"
+
+    local endo = Instance.new("Vector3Value",platform1)
+    endo.Value = endin
+    endo.Name = "endo"
+
+    local lerp = Instance.new("NumberValue",platform1)
+    lerp.Value = 0
+    lerp.Name = "lerp"
+
+    local back = Instance.new("BoolValue",lerp)
+    back.Name = "back"
+    back.Value = false
+
+    local wait = Instance.new("NumberValue",lerp)
+    wait.Name = "wait"
+
+    local speedy = Instance.new("IntValue", lerp)
+    speedy.Value = speed
+    speedy.Name = "speed"
+    return platform1
+end
 function createic(id,desc,pos,parent)
     parent = parent or game.workspace
     icemesh = Instance.new("Part",parent)
@@ -58,8 +95,6 @@ if game:GetService("ReplicatedFirst").maps:FindFirstChild("Newtest") then
     game:GetService("ReplicatedFirst").maps.Newtest:ClearAllChildren()
     game:GetService("ReplicatedFirst").maps.Newtest:Destroy()
 end
-
-local Iserv = game:GetService("InsertService")
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 local Newtest = Instance.new("Model",game:GetService("ReplicatedFirst").maps)
 Newtest.Name = "Newtest"
@@ -69,6 +104,15 @@ local settings_ = Instance.new("Folder")
 settings_.Name = "settings"
 settings_.Parent = Newtest
 
+moving = Instance.new("Folder", Newtest)
+moving.Name = "moving"
+
+plat = createplatform(1,moving,Vector3.new(14, 50, -22.5),Vector3.new(272.5, 213.5, -210))
+platb = createplatform(1,moving,Vector3.new(100.25300598145, 0, -17.677001953125),Vector3.new(99.138, 188.6, -244.978))
+platb.Orientation = Vector3.new(0,55,0)
+platc = createplatform(1,moving,Vector3.new(-106, 0, 0),Vector3.new(100.027, 199.3, -245.394))
+platd = createplatform(1,moving,Vector3.new(0, 0, 95),Vector3.new(-5.973, 185.5, -245.394))
+
 local lowgrav = Instance.new("Folder",settings_)
 lowgrav.Name = "lowgrav"
 
@@ -76,6 +120,11 @@ local bgm = Instance.new("IntValue")
 bgm.Name = "bgm"
 bgm.Value = 538397150
 bgm.Parent = settings_
+
+local bgmp = Instance.new("IntValue")
+bgmp.Name = "bgmP"
+bgmp.Value = 538397150
+bgmp.Parent = settings_
 
 local lighting = Instance.new("Folder")
 lighting.Name = "lighting"
@@ -340,12 +389,12 @@ where.Parent = TeleMap
 
 local Pipe1 = Instance.new("Model")
 Pipe1.Name = "Pipe"
-Pipe1.WorldPivot = CFrame.new(317.57537841797, 125.10839080811, -251.28668212891)
+Pipe1.WorldPivot = CFrame.new(345.32189941406, 125.10839080811, -264.73364257813, 0.70710676908493, 0, -0.70710676908493, 0, 1, 0, 0.70710676908493, 0, 0.70710676908493)
 Pipe1.Parent = Newtest
 
 local Pipebody1 = Instance.new("Model")
 Pipebody1.Name = "Pipebody"
-Pipebody1.WorldPivot = CFrame.new(318.6833190918, 120.74590301514, -249.45635986328, 0.9999988079071, 0, 5.0663948059082e-07, 0, 1, 0, -5.0663948059082e-07, 0, 0.9999988079071)
+Pipebody1.WorldPivot = CFrame.new(344.81109619141, 120.74590301514, -262.65600585938, 0.70710629224777, 0, -0.70710557699203, 0, 1, 0, 0.70710557699203, 0, 0.70710629224777)
 Pipebody1.Parent = Pipe1
 
 local Part16 = Instance.new("Part")
@@ -354,7 +403,7 @@ Part16.BottomSurface = Enum.SurfaceType.Smooth
 Part16.TopSurface = Enum.SurfaceType.Smooth
 Part16.Color = Color3.fromRGB(31, 128, 29)
 Part16.Size = Vector3.new(2.9076201915741, 8.725043296814, 1.4549008607864)
-Part16.CFrame = CFrame.new(320.64837646484, 120.74590301514, -251.40927124023, 0.70710653066635, 0, -0.70710653066635, 0, 1, 0, 0.70710653066635, 0, 0.70710653066635)
+Part16.CFrame = CFrame.new(347.58154296875, 120.74590301514, -262.64739990234, 0, 0, -0.99999964237213, 0, 1, 0, 0.99999964237213, 0, 0)
 Part16.Parent = Pipebody1
 
 local Part17 = Instance.new("Part")
@@ -363,7 +412,7 @@ Part17.BottomSurface = Enum.SurfaceType.Smooth
 Part17.TopSurface = Enum.SurfaceType.Smooth
 Part17.Color = Color3.fromRGB(31, 128, 29)
 Part17.Size = Vector3.new(2.9076201915741, 8.725043296814, 1.4549008607864)
-Part17.CFrame = CFrame.new(316.71640014648, 120.74590301514, -251.40521240234, 0.70710682868958, 0, 0.70710706710815, 0, 1, 0, -0.70710706710815, 0, 0.70710682868958)
+Part17.CFrame = CFrame.new(344.79833984375, 120.74590301514, -265.42486572266, 1.0000002384186, 0, 1.7881393432617e-07, 0, 1, 0, -1.7881393432617e-07, 0, 1.0000002384186)
 Part17.Parent = Pipebody1
 
 local Part18 = Instance.new("Part")
@@ -372,7 +421,7 @@ Part18.BottomSurface = Enum.SurfaceType.Smooth
 Part18.TopSurface = Enum.SurfaceType.Smooth
 Part18.Color = Color3.fromRGB(31, 128, 29)
 Part18.Size = Vector3.new(2.9076201915741, 8.725043296814, 1.4549008607864)
-Part18.CFrame = CFrame.new(321.46368408203, 120.74590301514, -249.44094848633, -2.6822090148926e-07, 0, -0.99999821186066, 0, 1, 0, 0.99999821186066, 0, -2.6822090148926e-07)
+Part18.CFrame = CFrame.new(346.76623535156, 120.74590301514, -260.67907714844, -0.70710569620132, 0, -0.70710533857346, 0, 1, 0, 0.70710533857346, 0, -0.70710569620132)
 Part18.Parent = Pipebody1
 
 local Part19 = Instance.new("Part")
@@ -381,7 +430,7 @@ Part19.BottomSurface = Enum.SurfaceType.Smooth
 Part19.TopSurface = Enum.SurfaceType.Smooth
 Part19.Color = Color3.fromRGB(31, 128, 29)
 Part19.Size = Vector3.new(2.9076201915741, 8.725043296814, 1.4549008607864)
-Part19.CFrame = CFrame.new(318.68338012695, 120.74590301514, -252.22061157227, 0.9999988079071, 0, 5.0663948059082e-07, 0, 1, 0, -5.0663948059082e-07, 0, 0.9999988079071)
+Part19.CFrame = CFrame.new(346.76577758789, 120.74590301514, -264.61056518555, 0.70710629224777, 0, -0.70710557699203, 0, 1, 0, 0.70710557699203, 0, 0.70710629224777)
 Part19.Parent = Pipebody1
 
 local Part20 = Instance.new("Part")
@@ -390,7 +439,7 @@ Part20.BottomSurface = Enum.SurfaceType.Smooth
 Part20.TopSurface = Enum.SurfaceType.Smooth
 Part20.Color = Color3.fromRGB(31, 128, 29)
 Part20.Size = Vector3.new(2.9076201915741, 8.725043296814, 1.4549008607864)
-Part20.CFrame = CFrame.new(316.71844482422, 120.74596405029, -247.50335693359, -0.707106590271, 0, 0.70710682868958, 0, 1, 0, -0.70710682868958, 0, -0.707106590271)
+Part20.CFrame = CFrame.new(342.04077148438, 120.74596405029, -262.66436767578, 1.4901161193848e-07, 0, 0.99999988079071, 0, 1, 0, -0.99999988079071, 0, 1.4901161193848e-07)
 Part20.Parent = Pipebody1
 
 local Part21 = Instance.new("Part")
@@ -399,7 +448,7 @@ Part21.BottomSurface = Enum.SurfaceType.Smooth
 Part21.TopSurface = Enum.SurfaceType.Smooth
 Part21.Color = Color3.fromRGB(31, 128, 29)
 Part21.Size = Vector3.new(2.9076201915741, 8.725043296814, 1.4549008607864)
-Part21.CFrame = CFrame.new(315.90322875977, 120.74596405029, -249.47192382813, 1.7881393432617e-07, 0, 0.99999821186066, 0, 1, 0, -0.99999821186066, 0, 1.7881393432617e-07)
+Part21.CFrame = CFrame.new(342.85629272461, 120.74596405029, -264.6328125, 0.70710563659668, 0, 0.7071053981781, 0, 1, 0, -0.7071053981781, 0, 0.70710563659668)
 Part21.Parent = Pipebody1
 
 local Part22 = Instance.new("Part")
@@ -408,7 +457,7 @@ Part22.BottomSurface = Enum.SurfaceType.Smooth
 Part22.TopSurface = Enum.SurfaceType.Smooth
 Part22.Color = Color3.fromRGB(31, 128, 29)
 Part22.Size = Vector3.new(2.9076201915741, 8.725043296814, 1.4549008607864)
-Part22.CFrame = CFrame.new(318.68414306641, 120.74596405029, -246.69213867188, -0.99999845027924, 0, -5.9604644775391e-07, 0, 1, 0, 5.9604644775391e-07, 0, -0.99999845027924)
+Part22.CFrame = CFrame.new(342.85708618164, 120.74596405029, -260.70080566406, -0.70710611343384, 0, 0.70710527896881, 0, 1, 0, -0.70710527896881, 0, -0.70710611343384)
 Part22.Parent = Pipebody1
 
 local Part23 = Instance.new("Part")
@@ -417,12 +466,12 @@ Part23.BottomSurface = Enum.SurfaceType.Smooth
 Part23.TopSurface = Enum.SurfaceType.Smooth
 Part23.Color = Color3.fromRGB(31, 128, 29)
 Part23.Size = Vector3.new(2.9076201915741, 8.725043296814, 1.4549008607864)
-Part23.CFrame = CFrame.new(320.65036010742, 120.74596405029, -247.50750732422, -0.70710599422455, 0, -0.70710623264313, 0, 1, 0, 0.70710623264313, 0, -0.70710599422455)
+Part23.CFrame = CFrame.new(344.82397460938, 120.74596405029, -259.88702392578, -0.99999904632568, 0, -1.7881393432617e-07, 0, 1, 0, 1.7881393432617e-07, 0, -0.99999904632568)
 Part23.Parent = Pipebody1
 
 local Pipehead1 = Instance.new("Model")
 Pipehead1.Name = "Pipehead"
-Pipehead1.WorldPivot = CFrame.new(318.64108276367, 129.87928771973, -249.44567871094, 0.99999642372131, 0, 5.9604502666843e-07, 0, 1, 0, -5.9604502666843e-07, 0, 0.99999642372131)
+Pipehead1.WorldPivot = CFrame.new(344.77368164063, 129.87928771973, -262.67828369141, 0.70710468292236, 0, -0.70710384845734, 0, 1, 0, 0.70710384845734, 0, 0.70710468292236)
 Pipehead1.Parent = Pipe1
 
 local Part24 = Instance.new("Part")
@@ -431,7 +480,7 @@ Part24.BottomSurface = Enum.SurfaceType.Smooth
 Part24.TopSurface = Enum.SurfaceType.Smooth
 Part24.Color = Color3.fromRGB(31, 128, 29)
 Part24.Size = Vector3.new(3.2705199718475, 2.453503370285, 1.2002346515656)
-Part24.CFrame = CFrame.new(321.00564575195, 126.19902801514, -251.7966003418, 0.70710670948029, 0, -0.70710670948029, 0, 1, 0, 0.70710670948029, 0, 0.70710670948029)
+Part24.CFrame = CFrame.new(348.10803222656, 126.19902801514, -262.66864013672, 0, 0, -0.99999988079071, 0, 1, 0, 0.99999988079071, 0, 0)
 Part24.Parent = Pipehead1
 
 local Part25 = Instance.new("Part")
@@ -440,7 +489,7 @@ Part25.BottomSurface = Enum.SurfaceType.Smooth
 Part25.TopSurface = Enum.SurfaceType.Smooth
 Part25.Color = Color3.fromRGB(31, 128, 29)
 Part25.Size = Vector3.new(3.2705199718475, 2.453503370285, 1.2002346515656)
-Part25.CFrame = CFrame.new(316.2744140625, 126.19902801514, -251.79202270508, 0.70710682868958, 0, 0.70710706710815, 0, 1, 0, -0.70710706710815, 0, 0.70710682868958)
+Part25.CFrame = CFrame.new(344.75933837891, 126.19902801514, -266.01092529297, 1.0000002384186, 0, 1.7881393432617e-07, 0, 1, 0, -1.7881393432617e-07, 0, 1.0000002384186)
 Part25.Parent = Pipehead1
 
 local Part26 = Instance.new("Part")
@@ -449,7 +498,7 @@ Part26.BottomSurface = Enum.SurfaceType.Smooth
 Part26.TopSurface = Enum.SurfaceType.Smooth
 Part26.Color = Color3.fromRGB(31, 128, 29)
 Part26.Size = Vector3.new(3.2705199718475, 2.453503370285, 1.2002346515656)
-Part26.CFrame = CFrame.new(321.98657226563, 126.19902801514, -249.42837524414, -1.7881393432617e-07, 0, -0.99999821186066, 0, 1, 0, 0.99999821186066, 0, -1.7881393432617e-07)
+Part26.CFrame = CFrame.new(347.12707519531, 126.19902801514, -260.30044555664, -0.70710563659668, 0, -0.7071053981781, 0, 1, 0, 0.7071053981781, 0, -0.70710563659668)
 Part26.Parent = Pipehead1
 
 local Part27 = Instance.new("Part")
@@ -458,7 +507,7 @@ Part27.BottomSurface = Enum.SurfaceType.Smooth
 Part27.TopSurface = Enum.SurfaceType.Smooth
 Part27.Color = Color3.fromRGB(31, 128, 29)
 Part27.Size = Vector3.new(3.2705199718475, 2.453503370285, 1.2002346515656)
-Part27.CFrame = CFrame.new(318.64114379883, 126.19902801514, -252.77301025391, 0.9999988079071, 0, 5.9604644775391e-07, 0, 1, 0, -5.9604644775391e-07, 0, 0.9999988079071)
+Part27.CFrame = CFrame.new(347.12652587891, 126.19902801514, -265.03103637695, 0.70710635185242, 0, -0.70710551738739, 0, 1, 0, 0.70710551738739, 0, 0.70710635185242)
 Part27.Parent = Pipehead1
 
 local Part28 = Instance.new("Part")
@@ -467,7 +516,7 @@ Part28.BottomSurface = Enum.SurfaceType.Smooth
 Part28.TopSurface = Enum.SurfaceType.Smooth
 Part28.Color = Color3.fromRGB(31, 128, 29)
 Part28.Size = Vector3.new(3.2705199718475, 2.453503370285, 1.2002346515656)
-Part28.CFrame = CFrame.new(316.27676391602, 126.19908905029, -247.09475708008, -0.70710664987564, 0, 0.70710688829422, 0, 1, 0, -0.70710688829422, 0, -0.70710664987564)
+Part28.CFrame = CFrame.new(341.43951416016, 126.19908905029, -262.6877746582, 1.4901161193848e-07, 0, 1, 0, 1, 0, -1, 0, 1.4901161193848e-07)
 Part28.Parent = Pipehead1
 
 local Part29 = Instance.new("Part")
@@ -476,7 +525,7 @@ Part29.BottomSurface = Enum.SurfaceType.Smooth
 Part29.TopSurface = Enum.SurfaceType.Smooth
 Part29.Color = Color3.fromRGB(31, 128, 29)
 Part29.Size = Vector3.new(3.2705199718475, 2.453503370285, 1.2002346515656)
-Part29.CFrame = CFrame.new(315.29586791992, 126.19908905029, -249.4631652832, 1.7881393432617e-07, 0, 0.99999821186066, 0, 1, 0, -0.99999821186066, 0, 1.7881393432617e-07)
+Part29.CFrame = CFrame.new(342.4206237793, 126.19908905029, -265.05609130859, 0.70710563659668, 0, 0.7071053981781, 0, 1, 0, -0.7071053981781, 0, 0.70710563659668)
 Part29.Parent = Pipehead1
 
 local Part30 = Instance.new("Part")
@@ -485,7 +534,7 @@ Part30.BottomSurface = Enum.SurfaceType.Smooth
 Part30.TopSurface = Enum.SurfaceType.Smooth
 Part30.Color = Color3.fromRGB(31, 128, 29)
 Part30.Size = Vector3.new(3.2705199718475, 2.453503370285, 1.2002346515656)
-Part30.CFrame = CFrame.new(318.64199829102, 126.19908905029, -246.11828613281, -0.99999862909317, 0, -5.9604644775391e-07, 0, 1, 0, 5.9604644775391e-07, 0, -0.99999862909317)
+Part30.CFrame = CFrame.new(342.42150878906, 126.19908905029, -260.32482910156, -0.70710623264313, 0, 0.7071053981781, 0, 1, 0, -0.7071053981781, 0, -0.70710623264313)
 Part30.Parent = Pipehead1
 
 local Part31 = Instance.new("Part")
@@ -494,7 +543,7 @@ Part31.BottomSurface = Enum.SurfaceType.Smooth
 Part31.TopSurface = Enum.SurfaceType.Smooth
 Part31.Color = Color3.fromRGB(31, 128, 29)
 Part31.Size = Vector3.new(3.2705199718475, 2.453503370285, 1.2002346515656)
-Part31.CFrame = CFrame.new(321.00784301758, 126.19908905029, -247.09939575195, -0.7071059346199, 0, -0.70710605382919, 0, 1, 0, 0.70710605382919, 0, -0.7071059346199)
+Part31.CFrame = CFrame.new(344.78817749023, 126.19908905029, -259.34567260742, -0.99999886751175, 0, -5.9604644775391e-08, 0, 1, 0, 5.9604644775391e-08, 0, -0.99999886751175)
 Part31.Parent = Pipehead1
 
 local Blackstuff1 = Instance.new("Part")
@@ -505,11 +554,11 @@ Blackstuff1.CanCollide = false
 Blackstuff1.TopSurface = Enum.SurfaceType.Smooth
 Blackstuff1.Color = Color3.fromRGB(17, 17, 17)
 Blackstuff1.Size = Vector3.new(6.5437827110291, 5.6712779998779, 4.7987728118896)
-Blackstuff1.CFrame = CFrame.new(318.66223144531, 121.31835174561, -249.45101928711, 0, -0.99999988079071, 0, 0.99999988079071, 0, 0, 0, 0, 1)
+Blackstuff1.CFrame = CFrame.new(344.79241943359, 121.31835174561, -262.66711425781, 0, -0.70710670948029, -0.70710676908493, 0.99999988079071, 0, 0, 0, -0.70710670948029, 0.70710676908493)
 Blackstuff1.Shape = Enum.PartType.Cylinder
 Blackstuff1.Parent = Pipe1
 
-local TPa1 = Instance.new("Part",Pipe1)
+local TPa1 = Instance.new("Part")
 TPa1.Name = "TPa1"
 TPa1.Anchored = true
 TPa1.BottomSurface = Enum.SurfaceType.Smooth
@@ -517,11 +566,13 @@ TPa1.CanCollide = false
 TPa1.TopSurface = Enum.SurfaceType.Smooth
 TPa1.Color = Color3.fromRGB(17, 17, 17)
 TPa1.Size = Vector3.new(2.3993864059448, 7.416286945343, 6.5437831878662)
-TPa1.CFrame = CFrame.new(318.66223144531, 125.78990936279, -249.45101928711, 0, -0.99999964237213, 0, 0.99999964237213, 0, 0, 0, 0, 1)
+TPa1.CFrame = CFrame.new(344.79241943359, 125.78990936279, -262.66711425781, 0, -0.70710653066635, -0.70710676908493, 0.99999964237213, 0, 0, 0, -0.70710653066635, 0.70710676908493)
 TPa1.Shape = Enum.PartType.Cylinder
+TPa1.Parent = Pipe1
 
 local TPb1 = Instance.new("Part",Pipe1)
 TPb1.Name = "TPb1"
+TPb1.Transparency = 1
 TPb1.Anchored = true
 TPb1.BottomSurface = Enum.SurfaceType.Smooth
 TPb1.CanCollide = false
@@ -529,15 +580,8 @@ TPb1.TopSurface = Enum.SurfaceType.Smooth
 TPb1.Size = Vector3.new(3.1020255088806, 0.77550637722015, 1.5510127544403)
 TPb1.CFrame = CFrame.new(295.91244506836, 344.21228027344, -353.44833374023)
 
-local ice = Instance.new("Part")
-ice.Name = "ice"
-ice.BottomSurface = Enum.SurfaceType.Smooth
-ice.TopSurface = Enum.SurfaceType.Smooth
-ice.Size = Vector3.new(4, 1, 2)
-ice.CFrame = CFrame.new(329, 128.76020812988, -240.69999694824)
-ice.Parent = Newtest
 
-local MainMesh = Iserv:CreateMeshPartAsync("rbxassetid://7159459892",3,2)
+local MainMesh = Iserv:CreateMeshPartAsync("rbxassetid://7160221033",3,2)
 MainMesh.Name = "MainMesh"
 MainMesh.Anchored = true
 MainMesh.Size = Vector3.new(302.20999145508, 404.08099365234, 369.77200317383)
@@ -591,9 +635,11 @@ Bo.Texture = "rbxassetid://7159461644"
 Bo.StudsPerTileV = 10
 Bo.StudsPerTileU = 10
 Bo.Parent = MainMesh
+
 ---------------------------------------------------------------------------------------------------------------------------------------
-ic = createic(65,"Hidden Behind the Mountain",ice.Position,Newtest)
-ice:Destroy()
+ic = createic(65,"Hidden Behind the Mountain",Vector3.new(358.9, 128.76, -249.44),Newtest)
+ic2 = createic(66,"Awkward Jumps and Dives",Vector3.new(-6.1, 190.66, -150.9),Newtest)
+ic3 = createic(67,"Leap of faith",Vector3.new(90.7, 190.66, -430),Newtest)
 ---------------------------------------------------------------------------------------------------------------------------------------
 
 if game:GetService("ReplicatedFirst").maps.hub.mainmesh:FindFirstChild("Pipe") then
@@ -795,6 +841,8 @@ where.Value = TPb1.Position
 --]]
 
 stuff.icr[11] = {
-    c65 = "Hidden Behind the Moutain"
+    c65 = "Hidden Behind the Moutain",
+    c66 = "Awkward Jumps and Dives",
+    c67 = "Leap of faith"
 }
-stuff.icrt[11] = "Moutain Tops"
+stuff.icrt[11] = "The Moutain Top"
