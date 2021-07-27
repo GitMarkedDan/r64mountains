@@ -884,9 +884,13 @@ function clear()
     stuff.gd[5] = string.sub(stuff.gd[5],0,64)
     game:GetService("Workspace").share.save:FireServer(stuff.gd)
 end
-if not game.Players.LocalPlayer.PlayerGui.UI.pause.bg.pause:FindFirstChild("Clear") then
-    createButton("Clear", UDim2.new(0.75,0,0,0),"Clear Extra ICs", clear, 0.75) 
-end
+
+game:GetService("UserInputService").InputBegan:Connect(function()
+    if not game.Players.LocalPlayer.PlayerGui.UI.pause.bg.pause:FindFirstChild("Clear") then
+        createButton("Clear", UDim2.new(0.75,0,0,0),"Clear Extra ICs", clear, 0.75) 
+    end
+end)
+
 sign = game:GetService("ReplicatedFirst").maps.hub["Sheldon Sign"]
 sign.tx.Value = "Hey, I added a thing in your pause menu."
 sign.tx.tx.Value = "You gotta press it and then quick to menu."
