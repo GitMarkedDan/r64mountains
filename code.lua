@@ -141,16 +141,6 @@ c4.Size = Vector3.new(4.7141289710999, 1.178532242775, 2.3570644855499)
 c4.CFrame = CFrame.new(292.1809387207, 143.04759216309, -337.60214233398)
 c4.Parent = Intro
 
-local TPb1 = Instance.new("Part")
-TPb1.Name = "TPb1"
-TPb1.Anchored = true
-TPb1.BottomSurface = Enum.SurfaceType.Smooth
-TPb1.CanCollide = false
-TPb1.TopSurface = Enum.SurfaceType.Smooth
-TPb1.Size = Vector3.new(3.1020255088806, 0.77550637722015, 1.5510127544403)
-TPb1.CFrame = CFrame.new(295.91244506836, 344.21228027344, -353.44833374023)
-TPb1.Parent = Newtest
-
 local Pipe = Instance.new("Model")
 Pipe.Name = "Pipe"
 Pipe.WorldPivot = CFrame.new(305.17535400391, 342.20837402344, -338.38668823242)
@@ -515,7 +505,7 @@ Blackstuff1.CFrame = CFrame.new(318.66223144531, 121.31835174561, -249.451019287
 Blackstuff1.Shape = Enum.PartType.Cylinder
 Blackstuff1.Parent = Pipe1
 
-local TPa1 = Instance.new("Part")
+local TPa1 = Instance.new("Part",Pipe1)
 TPa1.Name = "TPa1"
 TPa1.Anchored = true
 TPa1.BottomSurface = Enum.SurfaceType.Smooth
@@ -525,7 +515,15 @@ TPa1.Color = Color3.fromRGB(17, 17, 17)
 TPa1.Size = Vector3.new(2.3993864059448, 7.416286945343, 6.5437831878662)
 TPa1.CFrame = CFrame.new(318.66223144531, 125.78990936279, -249.45101928711, 0, -0.99999964237213, 0, 0.99999964237213, 0, 0, 0, 0, 1)
 TPa1.Shape = Enum.PartType.Cylinder
-TPa1.Parent = Pipe1
+
+local TPb1 = Instance.new("Part",Pipe1)
+TPb1.Name = "TPb1"
+TPb1.Anchored = true
+TPb1.BottomSurface = Enum.SurfaceType.Smooth
+TPb1.CanCollide = false
+TPb1.TopSurface = Enum.SurfaceType.Smooth
+TPb1.Size = Vector3.new(3.1020255088806, 0.77550637722015, 1.5510127544403)
+TPb1.CFrame = CFrame.new(295.91244506836, 344.21228027344, -353.44833374023)
 
 local ice = Instance.new("Part")
 ice.Name = "ice"
