@@ -877,7 +877,6 @@ stuff.icr[11] = {
     c66 = "Awkward Jumps and Dives",
     c67 = "Leap of faith"
 }
-stuff.icrt[11] = "The Moutain Top"
 
 ---------------------------------------------------------------------------------------------------------------------------------------
 function clear()
@@ -889,6 +888,7 @@ game:GetService("UserInputService").InputBegan:Connect(function()
     if not game.Players.LocalPlayer.PlayerGui.UI.pause.bg.pause:FindFirstChild("Clear") then
         createButton("Clear", UDim2.new(0.75,0,0,0),"Clear Extra ICs", clear, 0.75) 
     end
+    stuff.icrt[11] = "The Moutain Top"
 end)
 
 sign = game:GetService("ReplicatedFirst").maps.hub["Sheldon Sign"]
