@@ -148,9 +148,6 @@ platb.Orientation = Vector3.new(0,55,0)
 platc = createplatform(1,moving,Vector3.new(-106, 0, 0),Vector3.new(100.027, 199.3, -245.394))
 platd = createplatform(1,moving,Vector3.new(0, 0, 95),Vector3.new(-5.973, 185.5, -245.394))
 
-local lowgrav = Instance.new("Folder",settings_)
-lowgrav.Name = "lowgrav"
-
 local bgm = Instance.new("IntValue")
 bgm.Name = "bgm"
 bgm.Value = 538397150
